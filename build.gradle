@@ -1,0 +1,15 @@
+group 'com.bashar.nutracker'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'org.springframework', name: 'spring-test', version: '4.3.10.RELEASE'
+}
