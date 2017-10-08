@@ -10,4 +10,5 @@ import java.util.List;
 public interface FoodRepoApi {
     Food create(Food f);
     List<Food> getAll();
+    List<Food> searchFoodByName(String name);
 }

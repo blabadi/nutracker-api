@@ -34,4 +34,8 @@ public class FoodSvc {
     public void setFoodRepo(FoodRepoApi foodRepo) {
         this.foodRepo = foodRepo;
     }
+
+    public List<Food> searchFoodByName(String name) {
+        return foodRepo.searchFoodByName(name);
+    }
 }

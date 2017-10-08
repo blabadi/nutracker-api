@@ -29,4 +29,9 @@ public class FoodDao implements FoodRepoApi {
         Session s = factory.getCurrentSession();
         return (List<Food>) s.createQuery("from Food").list();
     }
+
+    @Override
+    public List<Food> searchFoodByName(String name) {
+        return null;
+    }
 }

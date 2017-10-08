@@ -2,6 +2,7 @@ package com.bashar.nutracker.core.dm;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +15,10 @@ import java.util.List;
 @Entity
 @Document(collection = "foods")
 public class Food {
-    @Id @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @Id
+//    @Field(value = "_id")
+//    @GeneratedValue(generator="system-uuid")
+//    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
     private String name;
     private String brand;

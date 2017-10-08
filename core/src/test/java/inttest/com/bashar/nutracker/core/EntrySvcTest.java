@@ -43,7 +43,7 @@ public class EntrySvcTest extends BaseTestCase {
     @Test public void testCreateEntry(){
         Entry e = new Entry();
         e.setAmount(1);
-        e.setCreateAt(new Date());
+        e.setCreatedAt(new Date());
 
         //set the test food
         Query q = new Query();

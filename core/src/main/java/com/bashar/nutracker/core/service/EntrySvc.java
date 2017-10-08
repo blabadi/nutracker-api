@@ -5,6 +5,7 @@ import com.bashar.nutracker.core.repo.api.EntryRepoApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class EntrySvc {
     EntryRepoApi entryRepo;
 
     public Entry create(Entry e) {
+        e.setCreatedAt(Calendar.getInstance().getTime());
         return entryRepo.create(e);
     }
 

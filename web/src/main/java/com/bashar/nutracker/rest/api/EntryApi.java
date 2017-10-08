@@ -2,6 +2,7 @@ package com.bashar.nutracker.rest.api;
 
 import com.bashar.nutracker.core.dm.Entry;
 import com.bashar.nutracker.core.dm.Food;
+import com.bashar.nutracker.core.service.EntrySvc;
 import com.bashar.nutracker.core.service.FoodSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,27 +14,21 @@ import java.util.List;
  */
 @RestController()
 @CrossOrigin(origins = "*")
-@RequestMapping("food")
-public class FoodApi {
+@RequestMapping("entry")
+public class EntryApi {
 
     @Autowired
-    FoodSvc foodSvc;
+    EntrySvc entrySvc;
 
     @RequestMapping(value="/", method = RequestMethod.GET)
-    public List<Food> getAll(){
-        return foodSvc.getAll();
+    public List<Entry> getAll(){
+        return entrySvc.getEntries();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Food create(@RequestBody Food food){
-        System.out.println(food);
-        return foodSvc.createFood(food);
+    public Entry create(@RequestBody Entry entry){
+        System.out.println(entry);
+        return entrySvc.create(entry);
     }
-
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public List<Food> search(@RequestParam("name") String name){
-        return foodSvc.searchFoodByName(name);
-    }
-
 
 }

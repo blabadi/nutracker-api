@@ -22,7 +22,6 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {CoreConfig.class})
-@ActiveProfiles("dev")
 public class FoodSvcTest {
 
     @Autowired

@@ -38,4 +38,9 @@ public class JPAFoodRepo implements FoodRepoApi {
 
         return foods;
     }
+
+    @Override
+    public List<Food> searchFoodByName(String name) {
+        return null;
+    }
 }

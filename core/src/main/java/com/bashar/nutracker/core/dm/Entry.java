@@ -1,7 +1,9 @@
 package com.bashar.nutracker.core.dm;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,15 +15,18 @@ import java.util.Date;
  */
 @Document(collection = "entries")
 @Entity
+
 public class Entry {
 
-    @Id @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @Id
+//    @GeneratedValue(generator="system-uuid")
+//    @GenericGenerator(name="system-uuid", strategy = "uuid")
+//    @Field(value = "_id")
     private String id;
 
     private float amount;
 
-    private Date createAt;
+    private Date createdAt;
 
     private String meal;
 
@@ -43,12 +48,12 @@ public class Entry {
         this.amount = amount;
     }
 
-    public Date getCreateAt() {
-        return createAt;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(Date createAt) {
+        this.createdAt = createAt;
     }
 
     public String getMeal() {

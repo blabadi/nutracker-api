@@ -19,7 +19,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories
 @ComponentScan(basePackageClasses = {FoodDao.class})
 public class MongoConfig extends AbstractMongoConfiguration {
-
     @Autowired
     Environment env;
 

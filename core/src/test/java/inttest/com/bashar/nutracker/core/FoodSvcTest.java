@@ -13,6 +13,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 /**
  * Created by Bashar on 2017-09-03.
  */
@@ -30,11 +32,13 @@ public class FoodSvcTest extends BaseTestCase {
         TestHelper.dropCreateSchema(db);
     }
 
-
     @Test public void testGetAll() {
         Assert.assertFalse(foodSvc.getAll().isEmpty());
     }
 
+    @Test public void searchFood() {
+        Assert.assertTrue((foodSvc.searchFoodByName("foo")).size() > 0);
+    }
 
     @Test public void addFood() {
         Food f = new Food();
