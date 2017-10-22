@@ -25,6 +25,9 @@ public class Food {
     private String unit;
     private float protein;
     private float fat;
+    private int calories;
+
+
     private  float carbs;
 
     public String getUnit() {
@@ -59,6 +62,12 @@ public class Food {
         this.carbs = carbs;
     }
 
+    public int getCalories() {
+        return calories;
+    }
+    public void setCalories(int calories) {
+        this.calories = calories;
+    }
 
     public String getId() {
         return id;
