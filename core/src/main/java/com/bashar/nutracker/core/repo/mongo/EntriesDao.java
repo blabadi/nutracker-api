@@ -4,8 +4,11 @@ import com.bashar.nutracker.core.dm.Entry;
 import com.bashar.nutracker.core.repo.api.EntryRepoApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,7 +16,6 @@ import java.util.List;
  */
 @Repository
 public class EntriesDao implements EntryRepoApi{
-
 
     @Autowired
     MongoOperations operations;
@@ -28,5 +30,10 @@ public class EntriesDao implements EntryRepoApi{
         return operations.findAll(Entry.class);
     }
 
-
+    @Override
+    public List<Entry> getByPeriod(Date start, Date end) {
+        Query findQuery = new Query();
+        findQuery.addCriteria(Criteria.where("createdAt").gte(start).lte(end));
+        return operations.find(findQuery, Entry.class);
+    }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,5 +25,9 @@ public class EntrySvc {
 
     public List<Entry> getEntries(){
         return  entryRepo.getAll();
+    }
+
+    public List<Entry> getEntries(Date start, Date end){
+        return entryRepo.getByPeriod(start, end);
     }
 }

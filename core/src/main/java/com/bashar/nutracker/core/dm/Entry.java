@@ -15,7 +15,6 @@ import java.util.Date;
  */
 @Document(collection = "entries")
 @Entity
-
 public class Entry {
 
     @Id
@@ -31,6 +30,25 @@ public class Entry {
     private String meal;
 
     private Food food;
+
+    public Entry amount(float amount) {
+        this.setAmount(amount);
+        return this;
+    }
+
+    public Entry createdAt(Date createdAt) {
+        this.setCreatedAt(createdAt);
+        return this;
+    }
+
+    public Entry meal(String meal) {
+        this.setMeal(id);
+        return this;
+    }
+    public Entry food(Food food) {
+        this.setFood(food);
+        return this;
+    }
 
     public String getId() {
         return id;
@@ -70,5 +88,17 @@ public class Entry {
 
     public void setFood(Food food) {
         this.food = food;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Entry{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", amount=").append(amount);
+        sb.append(", createdAt=").append(createdAt);
+        sb.append(", meal='").append(meal).append('\'');
+        sb.append(", food=").append(food);
+        sb.append('}');
+        return sb.toString();
     }
 }

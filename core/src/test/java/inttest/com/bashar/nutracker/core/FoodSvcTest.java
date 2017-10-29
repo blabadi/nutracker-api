@@ -14,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Bashar on 2017-09-03.
@@ -27,17 +28,27 @@ public class FoodSvcTest extends BaseTestCase {
     @Autowired
     MongoOperations db;
 
+    @Autowired
+    TestHelper testHelper;
     @Before
     public void setup(){
-        TestHelper.dropCreateSchema(db);
+        testHelper.dropCreateSchema();
     }
 
     @Test public void testGetAll() {
         Assert.assertFalse(foodSvc.getAll().isEmpty());
     }
 
-    @Test public void searchFood() {
-        Assert.assertTrue((foodSvc.searchFoodByName("foo")).size() > 0);
+    @Test
+    public void searchFood() {
+        Map<String,List<Food>> seeds = testHelper.foodSeeder()
+                .defaultFood(1)
+                .seed();
+
+        Assert.assertTrue((foodSvc.searchFoodByName(seeds.get("DEFAULT").stream()
+                .findAny().get()
+                .getName()
+                .substring(2))).size() > 0);
     }
 
     @Test public void addFood() {
@@ -48,7 +59,6 @@ public class FoodSvcTest extends BaseTestCase {
         f.setProtein(13.2f);
         f.setCarbs(7f);
         f.setFat(1);
-
         foodSvc.createFood(f);
     }
 
