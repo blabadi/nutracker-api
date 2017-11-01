@@ -44,34 +44,74 @@ public class TestHelper {
         db.createCollection(Food.class);
     }
 
+    class ChildSeeder<W> {
+
+    }
+
     abstract class Seeder<T> {
-        abstract Map<String, List<T>> seed();
+
+        protected final Map<String, List<T>> seeds = new HashMap<>();
+        public Map<Class<?>, Seeder<?>> childSeeders = new HashMap<>();
+
+        abstract void doSeed(T t);
+
+        protected Seeder<T> childSeeders(Map<Class<?>, Seeder<?>> childSeeders){
+            this.childSeeders = childSeeders;
+            return this;
+        }
+
+        protected <Y> Seeder<Y> childSeeder(Class<Y> clazz) {
+            if (this.childSeeders.get(clazz) != null) {
+                return (Seeder<Y>) this.childSeeders.get(clazz);
+            }
+            return null;
+        }
+
+        protected abstract Seeder<T> generic(int times);
+
+        public Seeder<T> seed(){
+            for(Map.Entry<String, List<T>> pair: this.seeds.entrySet()) {
+                pair.getValue().forEach(this::doSeed);
+            }
+            return this;
+        }
+
+        public Seeder<T> specific(T f){
+            if (!seeds.containsKey("SPECIFIC")) {
+                seeds.put("SPECIFIC", new ArrayList<>());
+            }
+            seeds.get("SPECIFIC").add(f);
+            return this;
+        }
+
+        public Map<String, List<T>> harvest(){
+            return seeds;
+        };
+
+        public T harvestFirst(){
+           return seeds.entrySet()
+                   .stream()
+                   .findFirst()
+                   .get()
+                   .getValue()
+                   .stream()
+                   .findFirst().get();
+        };
     }
 
     class FoodSeeder extends Seeder<Food> {
-
-        private final Map<String, List<Food>> foodSeeds = new HashMap<>();
-
-        public FoodSeeder defaultFood(int count){
+        public FoodSeeder generic(int count){
             for(int i = 1; i <= count; i++) {
                 Food food = new Food();
                 food.setName("testFood_" + i);
                 food.setCarbs(20);
                 food.setUnit("100g");
                 food.setProtein(23);
-                if (!foodSeeds.containsKey("DEFAULT")) {
-                    foodSeeds.put("DEFAULT", new ArrayList<>());
+                if (!seeds.containsKey("DEFAULT")) {
+                    seeds.put("DEFAULT", new ArrayList<>());
                 }
-                foodSeeds.get("DEFAULT").add(food);
+                seeds.get("DEFAULT").add(food);
             }
-            return this;
-        }
-
-        public FoodSeeder specific(Food f){
-            if (!foodSeeds.containsKey("SPECIFIC")) {
-                foodSeeds.put("SPECIFIC", new ArrayList<>());
-            }
-            foodSeeds.get("SPECIFIC").add(f);
             return this;
         }
 
@@ -79,44 +119,27 @@ public class TestHelper {
             throw new NotImplementedException();
         }
 
-        public Map<String, List<Food>> seed(){
-            doSeed();
-            return foodSeeds;
-        }
-
-        private void doSeed(){
-            for(Map.Entry<String, List<Food>> pair: this.foodSeeds.entrySet()) {
-                for(Food f: pair.getValue()) {
-                    foodRepo.create(f);
-                }
-            }
-
+        void doSeed(Food f){
+            foodRepo.create(f);
         }
     }
 
     class EntrySeeder extends Seeder<Entry> {
+        public EntrySeeder() {
+            this.childSeeders.put(Food.class, foodSeeder());
+        }
 
-        private final Map<String, List<Entry>> entrySeeds = new HashMap<>();
-
-        public EntrySeeder defaultEntry(int count, List<Food> foodSeeds){
+        public EntrySeeder generic(int count){
             for(int i = 1; i <= count; i++) {
                 Entry e = new Entry();
                 e.setAmount(i);
-                e.setFood(foodSeeds.size() < i ? foodSeeds.get(0) : foodSeeds.get(i));
+                e.setFood(this.childSeeder(Food.class).generic(1).harvestFirst());
                 e.setCreatedAt(new Date());
-                if (!entrySeeds.containsKey("DEFAULT")) {
-                    entrySeeds.put("DEFAULT", new ArrayList<>());
+                if (!seeds.containsKey("DEFAULT")) {
+                    seeds.put("DEFAULT", new ArrayList<>());
                 }
-                entrySeeds.get("DEFAULT").add(e);
+                seeds.get("DEFAULT").add(e);
             }
-            return this;
-        }
-
-        public EntrySeeder specific(Entry e){
-            if (!entrySeeds.containsKey("SPECIFIC")) {
-                entrySeeds.put("SPECIFIC", new ArrayList<>());
-            }
-            entrySeeds.get("SPECIFIC").add(e);
             return this;
         }
 
@@ -124,18 +147,8 @@ public class TestHelper {
             throw new NotImplementedException();
         }
 
-        public Map<String, List<Entry>> seed(){
-            doSeed();
-            return entrySeeds;
-        }
-
-        private void doSeed(){
-            for(Map.Entry<String, List<Entry>> pair: this.entrySeeds.entrySet()) {
-                for(Entry e: pair.getValue()) {
-                    entryRepo.create(e);
-                }
-            }
-
+        void doSeed(Entry e){
+                entryRepo.create(e);
         }
     }
 }

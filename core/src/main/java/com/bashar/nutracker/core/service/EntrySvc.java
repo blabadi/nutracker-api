@@ -19,7 +19,6 @@ public class EntrySvc {
     EntryRepoApi entryRepo;
 
     public Entry create(Entry e) {
-        e.setCreatedAt(Calendar.getInstance().getTime());
         return entryRepo.create(e);
     }
 
@@ -29,5 +28,13 @@ public class EntrySvc {
 
     public List<Entry> getEntries(Date start, Date end){
         return entryRepo.getByPeriod(start, end);
+    }
+
+    public boolean update(Entry entry) {
+        return entryRepo.update(entry);
+    }
+
+    public void delete(String id) {
+        this.entryRepo.delete(id);
     }
 }

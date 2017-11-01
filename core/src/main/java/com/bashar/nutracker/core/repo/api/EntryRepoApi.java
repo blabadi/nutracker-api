@@ -14,5 +14,9 @@ public interface EntryRepoApi {
     List<Entry> getAll();
 
     List<Entry> getByPeriod(Date start, Date end);
+
+    boolean update(Entry entry);
+
+    void delete(String id);
 }
 

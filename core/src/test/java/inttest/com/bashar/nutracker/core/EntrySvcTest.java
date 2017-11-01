@@ -42,7 +42,7 @@ public class EntrySvcTest extends BaseTestCase {
     @Before
     public void setup() {
         testHelper.dropCreateSchema();
-        foodSeeds = testHelper.foodSeeder().defaultFood(2).seed();
+        foodSeeds = testHelper.foodSeeder().generic(2).seed().harvest();
     }
 
     @Test
@@ -86,6 +86,32 @@ public class EntrySvcTest extends BaseTestCase {
         Assert.assertTrue("two entries should be found since last week", entries.size() == 2);
 
 
+    }
+
+    @Test public void testUpdateEntry(){
+        Entry defaultEntry = this.testHelper.entrySeeder()
+                .generic(1)
+                .seed()
+                .harvestFirst();
+
+        defaultEntry.setAmount(20);
+        defaultEntry.setFood(null);
+        this.svc.update(defaultEntry);
+
+        Entry saved = db.findById(defaultEntry.getId(), Entry.class);
+        Assert.assertTrue(saved.getAmount() == 20 && saved.getFood() != null);
+    }
+
+    @Test public void testDeleteEntry(){
+        Entry defaultEntry = this.testHelper.entrySeeder()
+                .generic(1)
+                .seed()
+                .harvestFirst();
+
+        this.svc.delete(defaultEntry.getId());
+
+        Entry deleted = db.findById(defaultEntry.getId(), Entry.class);
+        Assert.assertTrue(deleted == null);
     }
 
     @Test public void testCreateEntry(){

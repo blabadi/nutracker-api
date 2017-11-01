@@ -42,8 +42,8 @@ public class FoodSvcTest extends BaseTestCase {
     @Test
     public void searchFood() {
         Map<String,List<Food>> seeds = testHelper.foodSeeder()
-                .defaultFood(1)
-                .seed();
+                .generic(1)
+                .seed().harvest();
 
         Assert.assertTrue((foodSvc.searchFoodByName(seeds.get("DEFAULT").stream()
                 .findAny().get()

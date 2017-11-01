@@ -3,6 +3,7 @@ package com.bashar.nutracker.rest.api;
 import com.bashar.nutracker.core.dm.Entry;
 import com.bashar.nutracker.core.service.EntrySvc;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.InvalidParameterException;
@@ -44,9 +45,24 @@ public class EntryApi {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
     public Entry create(@RequestBody Entry entry){
-        System.out.println(entry);
+        System.out.println("create "+ entry);
         return entrySvc.create(entry);
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void update(@RequestBody Entry entry){
+        System.out.println("update" + entry);
+        entrySvc.update(entry);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable String id){
+        System.out.println("delete id:" + id);
+        entrySvc.delete(id);
     }
 
 }
