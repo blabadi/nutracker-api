@@ -5,9 +5,12 @@ import com.bashar.nutracker.core.dm.Food;
 import com.bashar.nutracker.core.repo.api.FoodRepoApi;
 import com.bashar.nutracker.core.repo.jpa.FoodRepo;
 import com.bashar.nutracker.core.service.FoodSvc;
+import inttest.com.bashar.nutracker.core.TestConfig;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
@@ -20,17 +23,16 @@ import java.util.List;
 /**
  * Created by Bashar on 2017-08-27.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {CoreConfig.class})
+@RunWith(JUnit4.class)
 public class FoodSvcTest {
 
-    @Autowired
     FoodSvc foodSvc;
 
     FoodRepoApi repo;
 
     @Before
     public void setup(){
+        this.foodSvc = new FoodSvc();
         repo = Mockito.mock(FoodRepoApi.class);
         foodSvc.setFoodRepo(repo);
     }
@@ -43,6 +45,6 @@ public class FoodSvcTest {
         //test call
         List<Food> foodsActual = foodSvc.getAll();
         //assertion
-        org.junit.Assert.assertTrue(foodsActual.size()> 0);
+        Assert.assertTrue(foodsActual.size()> 0);
     }
 }

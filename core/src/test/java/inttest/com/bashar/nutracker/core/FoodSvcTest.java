@@ -1,17 +1,12 @@
 package inttest.com.bashar.nutracker.core;
 
-import com.bashar.nutracker.core.CoreConfig;
 import com.bashar.nutracker.core.dm.Food;
 import com.bashar.nutracker.core.service.FoodSvc;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 import java.util.Map;
@@ -35,8 +30,18 @@ public class FoodSvcTest extends BaseTestCase {
         testHelper.dropCreateSchema();
     }
 
+    @Test public void testGetAll_Empty() {
+        List<Food> foods = foodSvc.getAll();
+        Assert.assertTrue(foods.isEmpty());
+    }
+
     @Test public void testGetAll() {
-        Assert.assertFalse(foodSvc.getAll().isEmpty());
+        Map<String,List<Food>> seededFoods = testHelper.foodSeeder()
+                .generic(3)
+                .seed().harvest();
+
+        List<Food> foods = foodSvc.getAll();
+        Assert.assertTrue(foods.size() == 3);
     }
 
     @Test
@@ -59,7 +64,8 @@ public class FoodSvcTest extends BaseTestCase {
         f.setProtein(13.2f);
         f.setCarbs(7f);
         f.setFat(1);
-        foodSvc.createFood(f);
+        Food saved = foodSvc.createFood(f);
+        Assert.assertTrue(saved.getId() != null);
     }
 
 }

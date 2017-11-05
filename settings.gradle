@@ -1,5 +1,4 @@
 rootProject.name = 'nutracker'
 include 'core'
 include 'web'
-include 'jpa-repo'
 
