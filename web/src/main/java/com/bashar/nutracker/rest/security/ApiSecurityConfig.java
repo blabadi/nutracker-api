@@ -23,6 +23,8 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationEntryPoint authEntryPoint;
 
+    @Autowired
+    private DBUserDetailService userSvc;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //needed to skip the security for OPTIONS http method that is called before the actual method
@@ -37,6 +39,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("bashar").password("password").roles("ACTUATOR");
+        auth.userDetailsService(userSvc);
     }
 
 }

@@ -15,3 +15,6 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile "org.mockito:mockito-core:1.+"
 }
+
+
+// to run specific profile set this env var, example => set SPRING_PROFILES_ACTIVE = secure,live
