@@ -25,7 +25,7 @@ public class TestFoodApi {
 
     @Test
     public void testGetAllFoodEmpty() throws Exception {
-        mvc.perform(get("/food/"))
+        mvc.perform(get("/api/food/"))
             .andDo(print())
             .andExpect(content().string("[]"));
     }

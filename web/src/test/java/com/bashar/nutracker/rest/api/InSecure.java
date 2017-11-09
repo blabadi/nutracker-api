@@ -13,13 +13,11 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * Created by Bashar on 2017-11-05.
+ * uses application-insecure.properties under test/resources to disable boot default security configs
  */
 @AutoConfigureMockMvc()
 @SpringBootTest()
 @ActiveProfiles("insecure")
-//https://stackoverflow.com/questions/29669393/override-default-spring-boot-application-properties-settings-in-junit-test
-//if you want to use a non-default (other than application.properties) name for the test properties file.
-//@TestPropertySource("classpath:application.test.properties")
 @ContextConfiguration(classes = {Config.class})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Insecure {

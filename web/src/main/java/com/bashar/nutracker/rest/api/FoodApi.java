@@ -1,6 +1,5 @@
 package com.bashar.nutracker.rest.api;
 
-import com.bashar.nutracker.core.dm.Entry;
 import com.bashar.nutracker.core.dm.Food;
 import com.bashar.nutracker.core.service.FoodSvc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +10,8 @@ import java.util.List;
 /**
  * Created by Bashar on 2017-08-27.
  */
-@RestController()
-@CrossOrigin(origins = "*")
-@RequestMapping("food")
+@RestController
+@RequestMapping("/api/food")
 public class FoodApi {
 
     @Autowired

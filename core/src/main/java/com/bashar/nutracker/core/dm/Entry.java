@@ -31,6 +31,8 @@ public class Entry {
 
     private Food food;
 
+    private String owner;
+
     public Entry amount(float amount) {
         this.setAmount(amount);
         return this;
@@ -48,6 +50,18 @@ public class Entry {
     public Entry food(Food food) {
         this.setFood(food);
         return this;
+    }
+
+    public Entry owner(String owner) {
+        this.setOwner(owner);
+        return this;
+    }
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getId() {

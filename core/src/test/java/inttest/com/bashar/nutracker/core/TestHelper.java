@@ -133,6 +133,7 @@ public class TestHelper {
             for(int i = 1; i <= count; i++) {
                 Entry e = new Entry();
                 e.setAmount(i);
+                e.owner("owner");
                 e.setFood(this.childSeeder(Food.class).generic(1).harvestFirst());
                 e.setCreatedAt(new Date());
                 if (!seeds.containsKey("DEFAULT")) {

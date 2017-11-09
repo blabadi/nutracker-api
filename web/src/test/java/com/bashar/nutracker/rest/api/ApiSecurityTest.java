@@ -21,7 +21,7 @@ public class ApiSecurityTest {
 
     @Test
     public void testFoodUnauthorized() throws Exception {
-        mvc.perform(get("/food/"))
+        mvc.perform(get("/api/food/"))
             .andDo(print())
             .andExpect(status().is(401));
     }

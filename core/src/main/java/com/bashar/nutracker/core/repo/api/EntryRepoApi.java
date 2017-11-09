@@ -13,10 +13,10 @@ public interface EntryRepoApi {
 
     List<Entry> getAll();
 
-    List<Entry> getByPeriod(Date start, Date end);
+    List<Entry> getByPeriod(String owner, Date start, Date end);
 
-    boolean update(Entry entry);
+    boolean updateUserEntry(Entry entry);
 
-    void delete(String id);
+    void deleteUserEntry(String id, String owner);
 }
 

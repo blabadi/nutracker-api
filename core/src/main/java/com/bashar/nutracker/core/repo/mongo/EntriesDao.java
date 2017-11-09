@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Bashar on 2017-09-03.
  */
 @Repository
-public class EntriesDao implements EntryRepoApi{
+public class EntriesDao implements EntryRepoApi {
 
     @Autowired
     MongoOperations operations;
@@ -33,15 +33,15 @@ public class EntriesDao implements EntryRepoApi{
     }
 
     @Override
-    public List<Entry> getByPeriod(Date start, Date end) {
+    public List<Entry> getByPeriod(String owner, Date start, Date end) {
         Query findQuery = new Query();
-        findQuery.addCriteria(Criteria.where("createdAt").gte(start).lte(end));
+        findQuery.addCriteria(Criteria.where("createdAt").gte(start).lte(end).and("owner").is(owner));
         return operations.find(findQuery, Entry.class);
     }
 
-    public boolean update(Entry entry){
+    public boolean updateUserEntry(Entry entry){
         Query findQuery = new Query();
-        findQuery.addCriteria(Criteria.where("_id").is(entry.getId()));
+        findQuery.addCriteria(Criteria.where("_id").is(entry.getId()).and("owner").is(entry.getOwner()));
         Update update = new Update();
         update.set("amount", entry.getAmount());
         WriteResult res = operations.updateFirst(findQuery, update, Entry.class);
@@ -49,7 +49,9 @@ public class EntriesDao implements EntryRepoApi{
     }
 
     @Override
-    public void delete(String id) {
-        operations.remove(new Query().addCriteria(Criteria.where("_id").is(id)), Entry.class);
+    public void deleteUserEntry(String id, String owner) {
+        operations.remove(new Query()
+                .addCriteria(Criteria.where("_id").is(id)
+                        .and("owner").is(owner)), Entry.class);
     }
 }

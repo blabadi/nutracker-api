@@ -26,15 +26,15 @@ public class EntrySvc {
         return  entryRepo.getAll();
     }
 
-    public List<Entry> getEntries(Date start, Date end){
-        return entryRepo.getByPeriod(start, end);
+    public List<Entry> getUserEntriesInPeriod(String owner, Date start, Date end) {
+        return entryRepo.getByPeriod(owner, start, end);
     }
 
-    public boolean update(Entry entry) {
-        return entryRepo.update(entry);
+    public boolean updateUserEntry(Entry entry) {
+        return entryRepo.updateUserEntry(entry);
     }
 
-    public void delete(String id) {
-        this.entryRepo.delete(id);
+    public void deleteUserEntry(String id, String owner) {
+        this.entryRepo.deleteUserEntry(id , owner);
     }
 }

@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  * Created by Bashar on 2017-09-30.
  */
 @org.springframework.web.bind.annotation.ControllerAdvice
-
 public class ControllerAdvice {
 
 }

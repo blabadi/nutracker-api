@@ -1,5 +1,4 @@
 package inttest.com.bashar.nutracker.core;
-import com.bashar.nutracker.core.CoreConfig;
 import com.bashar.nutracker.core.dm.Entry;
 import com.bashar.nutracker.core.dm.Food;
 import com.bashar.nutracker.core.repo.api.EntryRepoApi;
@@ -7,14 +6,10 @@ import com.bashar.nutracker.core.service.EntrySvc;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
 import java.util.List;
@@ -55,6 +50,7 @@ public class EntrySvcTest extends BaseTestCase {
         Entry todayEntry = new Entry()
                 .amount(1.2f)
                 .createdAt(new Date())
+                .owner("owner")
                 .food(foodSeeds.get("DEFAULT").stream().findFirst().get())
                 .meal("Breakfast");
 
@@ -67,6 +63,7 @@ public class EntrySvcTest extends BaseTestCase {
         Entry LastWeekEntry = new Entry()
                 .amount(1.3f)
                 .createdAt(weekBack)
+                .owner("owner")
                 .food(foodSeeds.get("DEFAULT").stream().findFirst().get())
                 .meal("Breakfast");
 
@@ -76,16 +73,14 @@ public class EntrySvcTest extends BaseTestCase {
                 .seed();
 
         //Test case 1, two days back
-        List<Entry> entries = svc.getEntries(twoDaysBack, todayEntry.getCreatedAt());
+        List<Entry> entries = svc.getUserEntriesInPeriod("owner", twoDaysBack, todayEntry.getCreatedAt());
         System.out.println(entries);
         Assert.assertTrue("one entry only in the last two days",entries.size() == 1);
 
         //Test case 2, one week back
-        entries = svc.getEntries(weekBack, new Date());
+        entries = svc.getUserEntriesInPeriod("owner", weekBack, new Date());
         System.out.println(entries);
         Assert.assertTrue("two entries should be found since last week", entries.size() == 2);
-
-
     }
 
     @Test public void testUpdateEntry(){
@@ -96,7 +91,7 @@ public class EntrySvcTest extends BaseTestCase {
 
         defaultEntry.setAmount(20);
         defaultEntry.setFood(null);
-        this.svc.update(defaultEntry);
+        this.svc.updateUserEntry(defaultEntry);
 
         Entry saved = db.findById(defaultEntry.getId(), Entry.class);
         Assert.assertTrue(saved.getAmount() == 20 && saved.getFood() != null);
@@ -108,7 +103,7 @@ public class EntrySvcTest extends BaseTestCase {
                 .seed()
                 .harvestFirst();
 
-        this.svc.delete(defaultEntry.getId());
+        this.svc.deleteUserEntry(defaultEntry.getId(), defaultEntry.getOwner());
 
         Entry deleted = db.findById(defaultEntry.getId(), Entry.class);
         Assert.assertTrue(deleted == null);
