@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * see: https://spring.io/guides/gs/testing-web/ - integration web tests for spring mvc with spring boot
  */
-@Insecure
+@InsecureTest
 @RunWith(SpringRunner.class)
 public class TestFoodApi {
     @Autowired

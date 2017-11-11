@@ -1,6 +1,7 @@
 package com.bashar.nutracker.rest.api;
 
 import com.bashar.nutracker.core.CoreConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -19,12 +20,14 @@ public class Config {
 
 @Configuration
 class WebConfig extends WebMvcConfigurerAdapter {
+
+    @Value("${app.client.allowedOrigin}")
+    String allowedClientOrigin;
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                // todo: make configurable
-                .allowedOrigins("http://localhost:4200")
-//                .allowCredentials(false)
+                .allowedOrigins(allowedClientOrigin)
                 .maxAge(3600);
     }
 }

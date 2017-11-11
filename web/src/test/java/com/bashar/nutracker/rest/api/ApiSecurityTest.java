@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Created by Bashar on 2017-11-05.
  */
 @RunWith(SpringRunner.class)
-@Secure
+@SecureTest
 public class ApiSecurityTest {
     @Autowired
     MockMvc mvc;
