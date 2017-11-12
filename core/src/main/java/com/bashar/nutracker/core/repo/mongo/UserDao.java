@@ -29,5 +29,11 @@ public class UserDao implements UserRepoApi {
         return u;
     }
 
+    @Override
+    public User create(User u) {
+        operations.save(u);
+        return u;
+    }
+
 
 }

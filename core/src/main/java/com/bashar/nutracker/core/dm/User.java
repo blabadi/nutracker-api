@@ -13,11 +13,11 @@ import java.util.Set;
 public class User {
     private String id;
     private String name;
+    private String email;
     private String password;
     private boolean active;
     private Date createdAt;
     private Set<String> roles = new HashSet<>();
-
 
     public String getId() {
         return id;
@@ -67,6 +67,49 @@ public class User {
         this.createdAt = createdAt;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public User id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    public User name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public User email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public User password(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public User active(boolean active) {
+        this.active = active;
+        return this;
+    }
+
+    public User createdAt(Date createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    public User roles(Set<String> roles) {
+        this.roles = roles;
+        return this;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("User{");
@@ -79,6 +122,7 @@ public class User {
         sb.append('}');
         return sb.toString();
     }
+
 
 
 }

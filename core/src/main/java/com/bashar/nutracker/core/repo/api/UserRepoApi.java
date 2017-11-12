@@ -7,4 +7,6 @@ import com.bashar.nutracker.core.dm.User;
  */
 public interface UserRepoApi {
     User findByName(String name);
+
+    User create(User u);
 }

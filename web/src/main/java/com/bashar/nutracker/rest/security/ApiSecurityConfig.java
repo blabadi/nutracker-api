@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
 /**
@@ -31,6 +32,8 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
         //see: https://docs.spring.io/spring-security/site/docs/4.2.x/reference/html/cors.html
         http.cors()
                 .and().csrf().disable()
+                .authorizeRequests().antMatchers("/api/user/register").permitAll()
+                .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .httpBasic().authenticationEntryPoint(authEntryPoint);
@@ -39,7 +42,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("bashar").password("password").roles("ACTUATOR");
-        auth.userDetailsService(userSvc);
+        auth.userDetailsService(userSvc).passwordEncoder(new BCryptPasswordEncoder());
     }
 
 }
