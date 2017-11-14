@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -32,7 +33,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
         //see: https://docs.spring.io/spring-security/site/docs/4.2.x/reference/html/cors.html
         http.cors()
                 .and().csrf().disable()
-                .authorizeRequests().antMatchers("/api/user/register").permitAll()
+                .authorizeRequests().antMatchers(HttpMethod.POST, "/api/user/").permitAll()
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()

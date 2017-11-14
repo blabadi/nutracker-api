@@ -1,5 +1,6 @@
 package com.bashar.nutracker.core.service;
 
+import com.bashar.nutracker.core.dm.Profile;
 import com.bashar.nutracker.core.dm.User;
 import com.bashar.nutracker.core.repo.api.UserRepoApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,17 @@ public class UserService {
 
         //save
         User created = userRepo.create(user);
+        created.setPassword("");
         return created;
+    }
+
+    public void updateProfile(String username, Profile profile) {
+        userRepo.updateProfile(username, profile);
+    }
+
+    public User getFullInfo(String username) {
+        User u = this.userRepo.getFullUserInfo(username);
+        u.setPassword("");
+        return u;
     }
 }

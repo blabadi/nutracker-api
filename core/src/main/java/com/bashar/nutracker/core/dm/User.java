@@ -17,6 +17,8 @@ public class User {
     private String password;
     private boolean active;
     private Date createdAt;
+    private Profile profile;
+
     private Set<String> roles = new HashSet<>();
 
     public String getId() {
@@ -110,12 +112,21 @@ public class User {
         return this;
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public User profile(Profile profile) {
+        this.profile = profile;
+        return this;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("User{");
         sb.append("id='").append(id).append('\'');
         sb.append(", name='").append(name).append('\'');
-        sb.append(", password='").append(password).append('\'');
+        sb.append(", password='").append("hidden").append('\'');
         sb.append(", active=").append(active);
         sb.append(", createdAt=").append(createdAt);
         sb.append(", roles=").append(roles);
