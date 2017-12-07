@@ -1,6 +1,5 @@
-package com.bashar.nutracker.core.repo.jpa;
+package com.bashar.nutracker.core.food;
 
-import com.bashar.nutracker.core.dm.Food;
 import org.springframework.data.repository.CrudRepository;
 
 /**

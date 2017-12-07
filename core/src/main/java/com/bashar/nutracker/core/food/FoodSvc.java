@@ -1,14 +1,9 @@
-package com.bashar.nutracker.core.service;
+package com.bashar.nutracker.core.food;
 
-import com.bashar.nutracker.core.dm.Food;
-import com.bashar.nutracker.core.repo.api.FoodRepoApi;
-import com.bashar.nutracker.core.repo.jpa.FoodRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 /**
  * Created by Bashar on 2017-08-27.

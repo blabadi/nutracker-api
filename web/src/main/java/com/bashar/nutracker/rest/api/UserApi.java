@@ -1,7 +1,7 @@
 package com.bashar.nutracker.rest.api;
 
-import com.bashar.nutracker.core.dm.Profile;
-import com.bashar.nutracker.core.service.UserService;
+import com.bashar.nutracker.core.user.Profile;
+import com.bashar.nutracker.core.user.UserService;
 import com.bashar.nutracker.rest.vo.RegisterUserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -23,7 +23,7 @@ public class UserApi {
     UserService userService;
 
     @RequestMapping(value="/{name}", method = RequestMethod.GET)
-    public com.bashar.nutracker.core.dm.User login(){
+    public com.bashar.nutracker.core.user.User login(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = User.class.cast(auth.getPrincipal());
         System.out.println("user : " + user.getUsername() + " logged in.");
@@ -31,8 +31,8 @@ public class UserApi {
     }
 
     @RequestMapping(value="/", method = RequestMethod.POST)
-    public com.bashar.nutracker.core.dm.User register(@RequestBody RegisterUserVo u){
-        return this.userService.createUser(new com.bashar.nutracker.core.dm.User()
+    public com.bashar.nutracker.core.user.User register(@RequestBody RegisterUserVo u){
+        return this.userService.createUser(new com.bashar.nutracker.core.user.User()
             .name(u.name)
             .email(u.email)
             .password(u.password)

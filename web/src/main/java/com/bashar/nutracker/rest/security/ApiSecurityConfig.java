@@ -27,6 +27,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DBUserDetailService userSvc;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //needed to skip the security for OPTIONS http method that is called before the actual method

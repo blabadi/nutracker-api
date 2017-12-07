@@ -1,7 +1,7 @@
 package inttest.com.bashar.nutracker.core;
 
-import com.bashar.nutracker.core.dm.Food;
-import com.bashar.nutracker.core.service.FoodSvc;
+import com.bashar.nutracker.core.food.Food;
+import com.bashar.nutracker.core.food.FoodSvc;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

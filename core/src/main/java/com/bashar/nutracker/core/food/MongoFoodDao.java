@@ -1,9 +1,6 @@
-package com.bashar.nutracker.core.repo.mongo;
+package com.bashar.nutracker.core.food;
 
-import com.bashar.nutracker.core.dm.Food;
-import com.bashar.nutracker.core.repo.api.FoodRepoApi;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -16,7 +13,8 @@ import java.util.regex.Pattern;
  * Created by Bashar on 2017-09-03.
  */
 @Repository
-public class FoodDao implements FoodRepoApi {
+public class MongoFoodDao implements FoodRepoApi {
+
     @Autowired
     MongoOperations operations;
 

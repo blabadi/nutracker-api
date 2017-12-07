@@ -1,9 +1,7 @@
-package com.bashar.nutracker.core.repo.mongo;
+package com.bashar.nutracker.core.repo.config.mongo;
 
-import com.bashar.nutracker.core.repo.hibernate.dao.*;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
-import com.mongodb.WriteConcern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +15,10 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @Configuration
 @EnableMongoRepositories
-@ComponentScan(basePackageClasses = {FoodDao.class})
+@ComponentScan(basePackageClasses = {
+    com.bashar.nutracker.core.food.MongoFoodDao.class,
+    com.bashar.nutracker.core.entry.MongoEntriesDao.class
+})
 public class MongoConfig extends AbstractMongoConfiguration {
     @Autowired
     Environment env;

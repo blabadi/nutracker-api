@@ -1,11 +1,10 @@
-package com.bashar.nutracker.core.repo.hibernate;
+package com.bashar.nutracker.core.repo.config.hibernate;
 
-import com.bashar.nutracker.core.repo.hibernate.dao.FoodDao;
+import com.bashar.nutracker.core.repo.config.hibernate.dao.FoodDao;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;

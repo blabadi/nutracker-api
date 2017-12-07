@@ -1,7 +1,4 @@
-package com.bashar.nutracker.core.repo.api;
-
-import com.bashar.nutracker.core.dm.Profile;
-import com.bashar.nutracker.core.dm.User;
+package com.bashar.nutracker.core.user;
 
 /**
  * Created by Bashar on 2017-11-05.

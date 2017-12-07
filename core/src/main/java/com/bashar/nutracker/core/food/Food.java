@@ -1,4 +1,4 @@
-package com.bashar.nutracker.core.dm;
+package com.bashar.nutracker.core.food;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;

@@ -1,6 +1,4 @@
-package com.bashar.nutracker.core.repo.api;
-
-import com.bashar.nutracker.core.dm.Food;
+package com.bashar.nutracker.core.food;
 
 import java.util.List;
 

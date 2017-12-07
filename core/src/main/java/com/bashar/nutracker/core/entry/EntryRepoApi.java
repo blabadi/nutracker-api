@@ -1,6 +1,6 @@
-package com.bashar.nutracker.core.repo.api;
+package com.bashar.nutracker.core.entry;
 
-import com.bashar.nutracker.core.dm.Entry;
+import com.bashar.nutracker.core.entry.Entry;
 
 import java.util.Date;
 import java.util.List;

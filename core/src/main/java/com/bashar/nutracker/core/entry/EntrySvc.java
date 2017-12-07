@@ -1,11 +1,8 @@
-package com.bashar.nutracker.core.service;
+package com.bashar.nutracker.core.entry;
 
-import com.bashar.nutracker.core.dm.Entry;
-import com.bashar.nutracker.core.repo.api.EntryRepoApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 

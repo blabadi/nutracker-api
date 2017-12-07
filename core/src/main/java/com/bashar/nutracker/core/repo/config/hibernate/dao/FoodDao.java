@@ -1,7 +1,7 @@
-package com.bashar.nutracker.core.repo.hibernate.dao;
+package com.bashar.nutracker.core.repo.config.hibernate.dao;
 
-import com.bashar.nutracker.core.dm.Food;
-import com.bashar.nutracker.core.repo.api.FoodRepoApi;
+import com.bashar.nutracker.core.food.Food;
+import com.bashar.nutracker.core.food.FoodRepoApi;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

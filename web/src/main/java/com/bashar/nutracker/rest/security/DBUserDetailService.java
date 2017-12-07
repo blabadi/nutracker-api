@@ -1,7 +1,7 @@
 package com.bashar.nutracker.rest.security;
 
-import com.bashar.nutracker.core.dm.User;
-import com.bashar.nutracker.core.service.UserService;
+import com.bashar.nutracker.core.user.User;
+import com.bashar.nutracker.core.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

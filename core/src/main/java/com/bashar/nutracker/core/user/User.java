@@ -1,4 +1,4 @@
-package com.bashar.nutracker.core.dm;
+package com.bashar.nutracker.core.user;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

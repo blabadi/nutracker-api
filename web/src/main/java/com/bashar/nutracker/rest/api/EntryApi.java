@@ -1,8 +1,8 @@
 package com.bashar.nutracker.rest.api;
 
-import com.bashar.nutracker.core.dm.Entry;
-import com.bashar.nutracker.core.service.EntrySvc;
-import com.bashar.nutracker.core.service.UserService;
+import com.bashar.nutracker.core.entry.Entry;
+import com.bashar.nutracker.core.entry.EntrySvc;
+import com.bashar.nutracker.core.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

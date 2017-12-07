@@ -1,8 +1,8 @@
 package inttest.com.bashar.nutracker.core;
-import com.bashar.nutracker.core.dm.Entry;
-import com.bashar.nutracker.core.dm.Food;
-import com.bashar.nutracker.core.repo.api.EntryRepoApi;
-import com.bashar.nutracker.core.service.EntrySvc;
+import com.bashar.nutracker.core.entry.Entry;
+import com.bashar.nutracker.core.food.Food;
+import com.bashar.nutracker.core.entry.EntryRepoApi;
+import com.bashar.nutracker.core.entry.EntrySvc;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

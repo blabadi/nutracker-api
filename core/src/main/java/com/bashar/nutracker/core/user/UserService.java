@@ -1,8 +1,5 @@
-package com.bashar.nutracker.core.service;
+package com.bashar.nutracker.core.user;
 
-import com.bashar.nutracker.core.dm.Profile;
-import com.bashar.nutracker.core.dm.User;
-import com.bashar.nutracker.core.repo.api.UserRepoApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

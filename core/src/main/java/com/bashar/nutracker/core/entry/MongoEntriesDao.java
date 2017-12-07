@@ -1,7 +1,5 @@
-package com.bashar.nutracker.core.repo.mongo;
+package com.bashar.nutracker.core.entry;
 
-import com.bashar.nutracker.core.dm.Entry;
-import com.bashar.nutracker.core.repo.api.EntryRepoApi;
 import com.mongodb.WriteResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -17,7 +15,7 @@ import java.util.List;
  * Created by Bashar on 2017-09-03.
  */
 @Repository
-public class EntriesDao implements EntryRepoApi {
+public class MongoEntriesDao implements EntryRepoApi {
 
     @Autowired
     MongoOperations operations;

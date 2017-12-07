@@ -1,7 +1,7 @@
 package com.bashar.nutracker.rest.api;
 
-import com.bashar.nutracker.core.dm.Food;
-import com.bashar.nutracker.core.service.FoodSvc;
+import com.bashar.nutracker.core.food.Food;
+import com.bashar.nutracker.core.food.FoodSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
