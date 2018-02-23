@@ -1,17 +1,15 @@
 package inttest.com.bashar.nutracker.core;
 
-import com.bashar.nutracker.core.CoreConfig;
-import com.bashar.nutracker.core.dm.Food;
-import com.bashar.nutracker.core.service.FoodSvc;
+import com.bashar.nutracker.core.food.Food;
+import com.bashar.nutracker.core.food.FoodSvc;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Bashar on 2017-09-03.
@@ -25,16 +23,38 @@ public class FoodSvcTest extends BaseTestCase {
     @Autowired
     MongoOperations db;
 
+    @Autowired
+    TestHelper testHelper;
     @Before
     public void setup(){
-        TestHelper.dropCreateSchema(db);
+        testHelper.dropCreateSchema();
     }
 
+    @Test public void testGetAll_Empty() {
+        List<Food> foods = foodSvc.getAll();
+        Assert.assertTrue(foods.isEmpty());
+    }
 
     @Test public void testGetAll() {
-        Assert.assertFalse(foodSvc.getAll().isEmpty());
+        Map<String,List<Food>> seededFoods = testHelper.foodSeeder()
+                .generic(3)
+                .seed().harvest();
+
+        List<Food> foods = foodSvc.getAll();
+        Assert.assertTrue(foods.size() == 3);
     }
 
+    @Test
+    public void searchFood() {
+        Map<String,List<Food>> seeds = testHelper.foodSeeder()
+                .generic(1)
+                .seed().harvest();
+
+        Assert.assertTrue((foodSvc.searchFoodByName(seeds.get("DEFAULT").stream()
+                .findAny().get()
+                .getName()
+                .substring(2))).size() > 0);
+    }
 
     @Test public void addFood() {
         Food f = new Food();
@@ -44,8 +64,8 @@ public class FoodSvcTest extends BaseTestCase {
         f.setProtein(13.2f);
         f.setCarbs(7f);
         f.setFat(1);
-
-        foodSvc.createFood(f);
+        Food saved = foodSvc.createFood(f);
+        Assert.assertTrue(saved.getId() != null);
     }
 
 }

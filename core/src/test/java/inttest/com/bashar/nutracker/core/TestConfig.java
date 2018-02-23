@@ -1,5 +1,6 @@
 package inttest.com.bashar.nutracker.core;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @PropertySource("application.inttest.properties")
+@ComponentScan(basePackageClasses = {TestConfig.class})
 public class TestConfig {
 
 }

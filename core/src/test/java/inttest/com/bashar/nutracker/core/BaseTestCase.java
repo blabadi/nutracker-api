@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {CoreConfig.class, TestConfig.class})
-@ActiveProfiles("dev")
+
 public class BaseTestCase {
     @Test
     public final void init(){
