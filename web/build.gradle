@@ -1,16 +1,16 @@
 group 'com.bashar.nutracker'
-version '1.0-SNAPSHOT'
 
-apply plugin: 'war'
+// apply plugin: 'war'
+apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-war {
-    baseName  = 'nutracker'
-}
+// war {
+//     baseName  = 'nutracker'
+// }
 
 buildscript {
     repositories {
@@ -22,7 +22,7 @@ buildscript {
 }
 
 jar {
-    baseName = 'nutracker'
+    baseName = 'nutracker-api'
     version =  '0.1'
 }
 

@@ -6,11 +6,16 @@ buildscript {
 plugins { id "io.spring.dependency-management" version "1.0.0.RELEASE" }
 
 group 'com.bashar.nutracker'
-version '1.0-SNAPSHOT'
+
 
 apply plugin: 'java'
 apply plugin: 'idea'
 
+
+jar {
+    baseName = 'nutracker-core'
+    version =  '0.1'
+}
 
 sourceCompatibility = 1.8
 
