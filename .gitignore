@@ -6,6 +6,7 @@
 /out-tsc
 build
 /.gradle
+bin
 gradle
 out
 

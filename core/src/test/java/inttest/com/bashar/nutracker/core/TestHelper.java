@@ -3,10 +3,11 @@ import com.bashar.nutracker.core.entry.Entry;
 import com.bashar.nutracker.core.food.Food;
 import com.bashar.nutracker.core.entry.EntryRepoApi;
 import com.bashar.nutracker.core.food.FoodRepoApi;
+
+import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Component;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.*;
 
@@ -116,7 +117,7 @@ public class TestHelper {
         }
 
         public FoodSeeder random(Food f){
-            throw new NotImplementedException();
+            throw new RuntimeException();
         }
 
         void doSeed(Food f){
@@ -145,7 +146,7 @@ public class TestHelper {
         }
 
         public EntrySeeder random(Entry e){
-            throw new NotImplementedException();
+            throw new RuntimeException();
         }
 
         void doSeed(Entry e){

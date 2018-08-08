@@ -1,13 +1,7 @@
 package com.bashar.nutracker.core.food;
-
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.List;
 
 /**
  * Created by Bashar on 2017-08-27.
