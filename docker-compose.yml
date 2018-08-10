@@ -12,6 +12,6 @@ services:
     container_name: mongo
     image: mongo
     volumes:
-      - ./data:/home/ec2-user/dev/nutracker-db
+      - /home/ec2-user/dev/nutracker-db:/data/db
     ports:
       - "27017:27017"
