@@ -7,7 +7,6 @@
 build
 /.gradle
 bin
-gradle
 out
 
 # IDEs and editors
