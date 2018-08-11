@@ -30,6 +30,7 @@ public class MongoConfig extends AbstractMongoConfiguration {
 
     @Override
     public Mongo mongo() throws Exception {
+        System.out.print("mongo host: " + env.getProperty("mongo.host"));
         return new MongoClient(env.getProperty("mongo.host"));
     }
 }
