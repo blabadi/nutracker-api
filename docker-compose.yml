@@ -4,14 +4,17 @@ services:
     container_name: nutracker-api
     restart: always
     build: .
+    expose:
+      - 8080
     ports:
-      - "3000:3000"
-    links:
-      - mongo
+      - "8080:8080"
+  # legacy
+  # links:
+  #    - mongo
     environment:
-      - mongo.host=mongo
+      - mongo.host=mongo-host-container
   mongo:
-    container_name: mongo
+    container_name: mongo-host-container
     image: mongo
     volumes:
       - /home/ec2-user/dev/nutracker-db:/data/db
