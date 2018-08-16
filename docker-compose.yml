@@ -1,4 +1,5 @@
-version: "2"
+version: "3.5"
+
 services:
   app:
     container_name: nutracker-api
