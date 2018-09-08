@@ -36,6 +36,8 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable()
                 .authorizeRequests().antMatchers(HttpMethod.POST, "/api/user/").permitAll()
                 .and()
+                .authorizeRequests().antMatchers(HttpMethod.GET, "/api/food/search").permitAll()
+                .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .httpBasic().authenticationEntryPoint(authEntryPoint);
